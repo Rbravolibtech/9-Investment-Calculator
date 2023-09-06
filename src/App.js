@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import ResultsTable from "./components/ResultsTable/ResultsTable";
 import UserInput from "./components/UserInput/userInput";
@@ -33,8 +34,13 @@ function App() {
 			<Header />
 
 			<UserInput onCalculate={calculateHandler} />
-
-			<ResultsTable />
+			{!userInput && <p>No Investment Calculated Yet. </p>}
+			{userInput && (
+				<ResultsTable
+					data={yearlyData}
+					initialInvestment={userInput["current-savings"]}
+				/>
+			)}
 		</div>
 	);
 }
